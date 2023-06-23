@@ -1,8 +1,8 @@
 # Articles for Admin Kit
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ibecsystems/admin-kit-articles.svg?style=flat-square)](https://packagist.org/packages/ibecsystems/admin-kit-articles)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/ibecsystems/admin-kit-articles/run-tests.yml?branch=1.x&label=tests&style=flat-square)](https://github.com/ibec-box/admin-kit-articles/actions?query=workflow%3Arun-tests+branch%3A1.x)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/ibecsystems/admin-kit-articles/fix-php-code-style-issues.yml?branch=1.x&label=code%20style&style=flat-square)](https://github.com/ibec-box/admin-kit-articles/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3A1.x)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/ibec-box/admin-kit-articles/run-tests.yml?branch=1.x&label=tests&style=flat-square)](https://github.com/ibec-box/admin-kit-articles/actions?query=workflow%3Arun-tests+branch%3A1.x)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/ibec-box/admin-kit-articles/fix-php-code-style-issues.yml?branch=1.x&label=code%20style&style=flat-square)](https://github.com/ibec-box/admin-kit-articles/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3A1.x)
 [![Total Downloads](https://img.shields.io/packagist/dt/ibecsystems/admin-kit-articles.svg?style=flat-square)](https://packagist.org/packages/ibecsystems/admin-kit-articles)
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
