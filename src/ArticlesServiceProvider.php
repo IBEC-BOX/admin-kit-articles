@@ -2,9 +2,9 @@
 
 namespace AdminKit\Articles;
 
+use AdminKit\Articles\Commands\ArticlesCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use AdminKit\Articles\Commands\ArticlesCommand;
 
 class ArticlesServiceProvider extends PackageServiceProvider
 {

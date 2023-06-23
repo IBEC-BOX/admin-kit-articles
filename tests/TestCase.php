@@ -2,9 +2,9 @@
 
 namespace AdminKit\Articles\Tests;
 
+use AdminKit\Articles\ArticlesServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use AdminKit\Articles\ArticlesServiceProvider;
 
 class TestCase extends Orchestra
 {
