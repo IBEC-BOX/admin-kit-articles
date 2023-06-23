@@ -14,7 +14,7 @@ class RouteServiceProvider extends LaravelRouteServiceProvider
         $this->routes(function () {
             Route::middleware('api')
                 ->prefix('api')
-                ->group(__DIR__ . '/../UI/API/Routes/api.php');
+                ->group(__DIR__.'/../UI/API/Routes/api.php');
         });
     }
 }
