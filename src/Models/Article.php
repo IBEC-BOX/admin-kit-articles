@@ -8,7 +8,6 @@ use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
@@ -52,11 +51,6 @@ class Article extends AbstractModel
                 'source' => 'title',
             ],
         ];
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(UserProxy::class);
     }
 
     public function scopeIsPublished(Builder $query): Builder
