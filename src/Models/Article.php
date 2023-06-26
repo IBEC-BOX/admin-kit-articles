@@ -28,6 +28,8 @@ class Article extends AbstractModel
     use HasTranslations;
     use Sluggable;
 
+    protected $table = 'admin_kit_articles';
+
     protected $casts = [
         'published_at' => 'datetime',
     ];

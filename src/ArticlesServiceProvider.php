@@ -21,7 +21,7 @@ class ArticlesServiceProvider extends PackageServiceProvider
             ->name('admin-kit-articles')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_articles_table')
+            ->hasMigration('create_admin_kit_articles_table')
             ->hasCommand(ArticlesCommand::class);
     }
 
