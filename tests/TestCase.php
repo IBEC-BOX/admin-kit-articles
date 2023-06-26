@@ -4,6 +4,7 @@ namespace AdminKit\Articles\Tests;
 
 use AdminKit\Articles\ArticlesServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -21,7 +22,7 @@ class TestCase extends Orchestra
     {
         return [
             ArticlesServiceProvider::class,
-        ];
+            LivewireServiceProvider::class,        ];
     }
 
     public function getEnvironmentSetUp($app)
