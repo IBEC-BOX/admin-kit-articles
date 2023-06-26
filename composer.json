@@ -19,9 +19,14 @@
     ],
     "require": {
         "php": "^8.1",
-        "spatie/laravel-package-tools": "^1.14.0",
+        "cviebrock/eloquent-sluggable": "^10.0",
         "illuminate/contracts": "^10.0",
-        "ibecsystems/admin-kit-core": "^2.0"
+        "ibecsystems/admin-kit-core": "^2.0",
+        "ibecsystems/laravel-porto": "^2.0",
+        "spatie/laravel-package-tools": "^1.14.0",
+        "spatie/laravel-data": "^3.2",
+        "spatie/laravel-json-api-paginate": "^1.13",
+        "spatie/laravel-query-builder": "^5.2"
     },
     "require-dev": {
         "laravel/pint": "^1.0",

@@ -3,7 +3,7 @@
 namespace AdminKit\Articles\Models;
 
 use AdminKit\Articles\Factories\ArticleFactory;
-use AdminKit\Core\Ship\Abstracts\Models\AbstractModel;
+use AdminKit\Core\Abstracts\Models\AbstractModel;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;

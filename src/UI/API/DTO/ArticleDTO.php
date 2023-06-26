@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace AdminKit\Articles\UI\API\DTO;
 
 use AdminKit\Articles\Models\Article;
-use AdminKit\Core\Ship\Abstracts\DTO\AbstractDTO;
 use Carbon\Carbon;
+use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
 
-class ArticleDTO extends AbstractDTO
+class ArticleDTO extends Data
 {
     public function __construct(
         public Lazy|int $id,

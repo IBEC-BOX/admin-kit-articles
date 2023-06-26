@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AdminKit\Articles\Repositories;
 
-use AdminKit\Core\Ship\Abstracts\Repositories\RepositoryInterface;
+use AdminKit\Core\Abstracts\Repositories\RepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
