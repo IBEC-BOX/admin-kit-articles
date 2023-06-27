@@ -22,7 +22,8 @@ class TestCase extends Orchestra
     {
         return [
             ArticlesServiceProvider::class,
-            LivewireServiceProvider::class,        ];
+            LivewireServiceProvider::class,
+        ];
     }
 
     public function getEnvironmentSetUp($app)
