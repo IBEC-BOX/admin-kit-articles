@@ -1,6 +1,6 @@
 <?php
 
-namespace AdminKit\Articles\Factories;
+namespace AdminKit\Articles\Database\Factories;
 
 use AdminKit\Articles\Models\Article;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -12,7 +12,7 @@ class ArticleFactory extends Factory
     public function definition()
     {
         return [
-
+            //
         ];
     }
 }

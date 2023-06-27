@@ -2,7 +2,7 @@
 
 namespace AdminKit\Articles\Models;
 
-use AdminKit\Articles\Factories\ArticleFactory;
+use AdminKit\Articles\Database\Factories\ArticleFactory;
 use AdminKit\Core\Abstracts\Models\AbstractModel;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
