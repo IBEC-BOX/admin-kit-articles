@@ -16,11 +16,6 @@ class ArticleResource extends Resource
 {
     use Translatable;
 
-    public function __construct()
-    {
-        dd(1);
-    }
-
     protected static ?string $model = Article::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
