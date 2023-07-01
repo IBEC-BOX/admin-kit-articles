@@ -6,6 +6,7 @@ return [
         'plural_label' => 'Новости',
 
         'id' => 'ID',
+        'image' => 'Изображение',
         'title' => 'Заголовок',
         'slug' => 'Slug',
         'content' => 'Контент',

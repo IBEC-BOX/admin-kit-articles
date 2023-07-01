@@ -22,8 +22,22 @@ class ArticleResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
+        $imageComponent = [];
+        if (config('admin-kit-articles.image.enabled')) {
+            $imageComponent[] = Forms\Components\SpatieMediaLibraryFileUpload::make('image')
+                ->label(__('admin-kit-articles::articles.resource.image'))
+                ->image()
+                ->required()
+                ->imageResizeMode(config('admin-kit-articles.image.resize_mode'))
+                ->imageCropAspectRatio(config('admin-kit-articles.image.crop_aspect_ratio'))
+                ->imageResizeTargetWidth(config('admin-kit-articles.image.resize_target_width'))
+                ->imageResizeTargetHeight(config('admin-kit-articles.image.resize_target_height'))
+                ->imagePreviewHeight(config('admin-kit-articles.image.preview_height'))
+                ->columnSpan(2);
+        }
+
+        return $form->schema(
+            array_merge($imageComponent, [
                 Forms\Components\Card::make([
                     Forms\Components\TextInput::make('title')
                         ->label(__('admin-kit-articles::articles.resource.title'))
@@ -62,7 +76,7 @@ class ArticleResource extends Resource
                     ])
                     ->collapsible(),
             ])
-            ->columns(2);
+        )->columns(2);
     }
 
     public static function table(Table $table): Table
@@ -71,6 +85,10 @@ class ArticleResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->label(__('admin-kit-articles::articles.resource.id')),
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('image')
+                    ->label(__('admin-kit-articles::articles.resource.image'))
+                    ->height(90)
+                    ->conversion('thumb'),
                 Tables\Columns\TextColumn::make('title')
                     ->label(__('admin-kit-articles::articles.resource.title')),
                 Tables\Columns\TextColumn::make('created_at')
