@@ -2,6 +2,10 @@
 
 All notable changes to `admin-kit-articles` will be documented in this file.
 
+## v2.1.1 - 2023-07-01
+
+- add articles russian translation
+
 ## v2.1.0 - 2023-06-28
 
 - fix correct migration file name
