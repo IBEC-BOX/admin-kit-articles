@@ -54,7 +54,7 @@ class ArticleResource extends Resource
                         Forms\Components\RichEditor::make('short_content')->columnSpan(16)
                             ->label(__('admin-kit-articles::articles.resource.short_content')),
 
-                        Forms\Components\DatePicker::make('published_at')
+                        Forms\Components\DateTimePicker::make('published_at')
                             ->label(__('admin-kit-articles::articles.resource.published_date')),
 
                         Forms\Components\Toggle::make('pinned')
