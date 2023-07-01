@@ -4,8 +4,6 @@ namespace AdminKit\Articles\Database\Factories;
 
 use AdminKit\Articles\Models\Article;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\MediaLibrary\Support\ImageFactory;
 
 class ArticleFactory extends Factory
 {
