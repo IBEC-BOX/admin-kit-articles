@@ -26,6 +26,7 @@ class ArticleResource extends Resource
             ->schema([
                 Forms\Components\Card::make([
                     Forms\Components\TextInput::make('title')
+                        ->label(__('admin-kit-articles::articles.resource.title'))
                         ->required()
                         ->lazy()
                         ->afterStateUpdated(
@@ -37,21 +38,27 @@ class ArticleResource extends Resource
                         ),
 
                     Forms\Components\TextInput::make('slug')
+                        ->label(__('admin-kit-articles::articles.resource.slug'))
                         ->disabled()
                         ->required()
                         ->unique(Article::class, 'slug', ignoreRecord: true),
 
-                    Forms\Components\RichEditor::make('content')->required()->columnSpan(2),
+                    Forms\Components\RichEditor::make('content')
+                        ->label(__('admin-kit-articles::articles.resource.content'))
+                        ->required()
+                        ->columnSpan(2),
                 ])->columns(),
 
-                Forms\Components\Section::make('Properties')
+                Forms\Components\Section::make(__('admin-kit-articles::articles.resource.properties'))
                     ->schema([
-                        Forms\Components\RichEditor::make('short_content')->columnSpan(16),
+                        Forms\Components\RichEditor::make('short_content')->columnSpan(16)
+                            ->label(__('admin-kit-articles::articles.resource.short_content')),
 
                         Forms\Components\DatePicker::make('published_at')
-                            ->label('Published Date'),
+                            ->label(__('admin-kit-articles::articles.resource.published_date')),
 
-                        Forms\Components\Toggle::make('pinned'),
+                        Forms\Components\Toggle::make('pinned')
+                            ->label(__('admin-kit-articles::articles.resource.pinned')),
                     ])
                     ->collapsible(),
             ])
@@ -62,9 +69,12 @@ class ArticleResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id'),
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('created_at'),
+                Tables\Columns\TextColumn::make('id')
+                    ->label(__('admin-kit-articles::articles.resource.id')),
+                Tables\Columns\TextColumn::make('title')
+                    ->label(__('admin-kit-articles::articles.resource.title')),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('admin-kit-articles::articles.resource.created_at')),
             ])
             ->filters([
                 //
@@ -93,8 +103,18 @@ class ArticleResource extends Resource
         ];
     }
 
+    public static function getLabel(): ?string
+    {
+        return __('admin-kit-articles::articles.resource.label');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('admin-kit-articles::articles.resource.plural_label');
+    }
+
     public static function getTranslatableLocales(): array
     {
-        return ['ru', 'en', 'kk', 'de'];
+        return config('admin-kit.locales');
     }
 }

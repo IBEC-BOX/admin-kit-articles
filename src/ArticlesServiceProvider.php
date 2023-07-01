@@ -22,6 +22,7 @@ class ArticlesServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasMigration('create_admin_kit_articles_table')
+            ->hasTranslations()
             ->hasCommand(ArticlesCommand::class);
     }
 
