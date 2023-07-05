@@ -4,6 +4,7 @@ namespace AdminKit\Articles\UI\Filament\Resources;
 
 use AdminKit\Articles\Models\Article;
 use AdminKit\Articles\UI\Filament\Resources\ArticleResource\Pages;
+use AdminKit\Core\Forms\Components\AdminKitCropper;
 use Filament\Forms;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Form;
@@ -24,16 +25,23 @@ class ArticleResource extends Resource
     {
         $imageComponent = [];
         if (config('admin-kit-articles.image.enabled')) {
-            $imageComponent[] = Forms\Components\SpatieMediaLibraryFileUpload::make('image')
+            $imageComponent[] = AdminKitCropper::make('image')
                 ->label(__('admin-kit-articles::articles.resource.image'))
                 ->image()
                 ->required()
+                ->columnSpan(2)
+
+                // image properties
                 ->imageResizeMode(config('admin-kit-articles.image.resize_mode'))
                 ->imageCropAspectRatio(config('admin-kit-articles.image.crop_aspect_ratio'))
                 ->imageResizeTargetWidth(config('admin-kit-articles.image.resize_target_width'))
                 ->imageResizeTargetHeight(config('admin-kit-articles.image.resize_target_height'))
                 ->imagePreviewHeight(config('admin-kit-articles.image.preview_height'))
-                ->columnSpan(2);
+
+                // cropper properties
+                ->modalHeading(__('admin-kit-articles::articles.resource.cropper_header'))
+                ->modalSize('2xl')
+                ->zoomable(false);
         }
 
         return $form->schema(

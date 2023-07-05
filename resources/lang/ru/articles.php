@@ -4,6 +4,7 @@ return [
     'resource' => [
         'label' => 'Новость',
         'plural_label' => 'Новости',
+        'cropper_title' => 'Обрезать изображение',
 
         'id' => 'ID',
         'image' => 'Изображение',

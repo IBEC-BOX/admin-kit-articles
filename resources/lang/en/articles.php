@@ -4,6 +4,7 @@ return [
     'resource' => [
         'label' => 'News',
         'plural_label' => 'News',
+        'cropper_title' => 'Crop image',
 
         'id' => 'ID',
         'image' => 'Image',

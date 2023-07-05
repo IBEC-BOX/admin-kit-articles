@@ -39,6 +39,9 @@ class Article extends AbstractModel implements HasMedia
     ];
 
     protected $fillable = [
+        'title',
+        'content',
+        'short_content',
         'slug',
         'pinned',
         'published_at',
@@ -53,9 +56,9 @@ class Article extends AbstractModel implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-            ->width(160)
-            ->height(90)
-            ->sharpen(10);
+            ->width(config('admin-kit-articles.image.thumb_width'))
+            ->height(config('admin-kit-articles.image.thumb_height'))
+            ->sharpen(config('admin-kit-articles.image.thumb_sharpen'));
     }
 
     public function sluggable(): array
