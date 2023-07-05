@@ -2,6 +2,10 @@
 
 All notable changes to `admin-kit-articles` will be documented in this file.
 
+## v2.1.3 - 2023-07-05
+
+- add AdminKitCropper for images
+
 ## v2.1.2 - 2023-07-01
 
 - add image field in articles
