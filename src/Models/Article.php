@@ -4,6 +4,7 @@ namespace AdminKit\Articles\Models;
 
 use AdminKit\Articles\Database\Factories\ArticleFactory;
 use AdminKit\Core\Abstracts\Models\AbstractModel;
+use AdminKit\SEO\Traits\HasSEO;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
@@ -31,6 +32,7 @@ class Article extends AbstractModel implements HasMedia
     use HasTranslations;
     use InteractsWithMedia;
     use Sluggable;
+    use HasSEO;
 
     protected $table = 'admin_kit_articles';
 

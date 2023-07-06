@@ -5,6 +5,7 @@ namespace AdminKit\Articles\UI\Filament\Resources;
 use AdminKit\Articles\Models\Article;
 use AdminKit\Articles\UI\Filament\Resources\ArticleResource\Pages;
 use AdminKit\Core\Forms\Components\AdminKitCropper;
+use AdminKit\SEO\Forms\Components\SEOSection;
 use Filament\Forms;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Form;
@@ -23,9 +24,9 @@ class ArticleResource extends Resource
 
     public static function form(Form $form): Form
     {
-        $imageComponent = [];
+        $rows = [];
         if (config('admin-kit-articles.image.enabled')) {
-            $imageComponent[] = AdminKitCropper::make('image')
+            $rows[] = AdminKitCropper::make('image')
                 ->label(__('admin-kit-articles::articles.resource.image'))
                 ->image()
                 ->required()
@@ -44,47 +45,46 @@ class ArticleResource extends Resource
                 ->zoomable(false);
         }
 
-        return $form->schema(
-            array_merge($imageComponent, [
-                Forms\Components\Card::make([
-                    Forms\Components\TextInput::make('title')
-                        ->label(__('admin-kit-articles::articles.resource.title'))
-                        ->required()
-                        ->lazy()
-                        ->afterStateUpdated(
-                            function (string $context, $state, callable $set) {
-                                if ($context === 'create') {
-                                    $set('slug', Str::slug($state));
-                                }
-                            }
-                        ),
+        $rows[] = Forms\Components\Card::make([
+            Forms\Components\TextInput::make('title')
+                ->label(__('admin-kit-articles::articles.resource.title'))
+                ->required()
+                ->lazy()
+                ->afterStateUpdated(
+                    function (string $context, $state, callable $set) {
+                        if ($context === 'create') {
+                            $set('slug', Str::slug($state));
+                        }
+                    }
+                ),
 
-                    Forms\Components\TextInput::make('slug')
-                        ->label(__('admin-kit-articles::articles.resource.slug'))
-                        ->disabled()
-                        ->required()
-                        ->unique(Article::class, 'slug', ignoreRecord: true),
+            Forms\Components\TextInput::make('slug')
+                ->label(__('admin-kit-articles::articles.resource.slug'))
+                ->disabled()
+                ->required()
+                ->unique(Article::class, 'slug', ignoreRecord: true),
 
-                    Forms\Components\RichEditor::make('content')
-                        ->label(__('admin-kit-articles::articles.resource.content'))
-                        ->required()
-                        ->columnSpan(2),
-                ])->columns(),
+            Forms\Components\RichEditor::make('content')
+                ->label(__('admin-kit-articles::articles.resource.content'))
+                ->required()
+                ->columnSpan(2),
 
-                Forms\Components\Section::make(__('admin-kit-articles::articles.resource.properties'))
-                    ->schema([
-                        Forms\Components\RichEditor::make('short_content')->columnSpan(16)
-                            ->label(__('admin-kit-articles::articles.resource.short_content')),
+            Forms\Components\RichEditor::make('short_content')
+                ->label(__('admin-kit-articles::articles.resource.short_content'))
+                ->columnSpan(2),
 
-                        Forms\Components\DateTimePicker::make('published_at')
-                            ->label(__('admin-kit-articles::articles.resource.published_date')),
+            Forms\Components\Toggle::make('pinned')
+                ->label(__('admin-kit-articles::articles.resource.pinned')),
 
-                        Forms\Components\Toggle::make('pinned')
-                            ->label(__('admin-kit-articles::articles.resource.pinned')),
-                    ])
-                    ->collapsible(),
-            ])
-        )->columns(2);
+            Forms\Components\DateTimePicker::make('published_at')
+                ->label(__('admin-kit-articles::articles.resource.published_date')),
+        ])->columns();
+
+        if (config('admin-kit-articles.seo.enabled')) {
+            $rows[] = SEOSection::make();
+        }
+
+        return $form->schema($rows);
     }
 
     public static function table(Table $table): Table
@@ -107,6 +107,7 @@ class ArticleResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

@@ -16,4 +16,8 @@ return [
         'thumb_height' => '90',
         'thumb_sharpen' => '10',
     ],
+
+    'seo' => [
+        'enabled' => true,
+    ],
 ];
