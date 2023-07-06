@@ -2,6 +2,10 @@
 
 All notable changes to `admin-kit-articles` will be documented in this file.
 
+## v2.1.4 - 2023-07-06
+
+- add SEOSection in filament form
+
 ## v2.1.3 - 2023-07-05
 
 - add AdminKitCropper for images
