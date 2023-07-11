@@ -23,7 +23,6 @@
         "illuminate/contracts": "^10.0",
         "ibecsystems/admin-kit-core": "^2.2",
         "ibecsystems/admin-kit-seo": "^2.2",
-        "ibecsystems/laravel-porto": "^2.0",
         "spatie/laravel-package-tools": "^1.14.0",
         "spatie/laravel-data": "^3.2",
         "spatie/laravel-json-api-paginate": "^1.13",
