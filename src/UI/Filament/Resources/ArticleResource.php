@@ -45,7 +45,7 @@ class ArticleResource extends Resource
                 ->zoomable(false);
         }
 
-        $rows[] = TranslatableTabs::make(fn($locale) => Forms\Components\Tabs\Tab::make($locale)
+        $rows[] = TranslatableTabs::make(fn ($locale) => Forms\Components\Tabs\Tab::make($locale)
             ->schema([
                 Forms\Components\TextInput::make("title.$locale")
                     ->label(__('admin-kit-articles::articles.resource.title'))
