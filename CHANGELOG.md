@@ -2,6 +2,13 @@
 
 All notable changes to `admin-kit-articles` will be documented in this file.
 
+## v2.2.0 - 2023-07-11
+
+- feat: upgrade admin-kit-core to v2.2
+- feat: upgrade admin-kit-seo to v2.2
+- feat: remove filament translatable plugin
+- feat: use SEOComponent from admin-kit-seo
+
 ## v2.1.4 - 2023-07-06
 
 - add SEOSection in filament form
