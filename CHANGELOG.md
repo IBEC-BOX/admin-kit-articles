@@ -2,6 +2,10 @@
 
 All notable changes to `admin-kit-articles` will be documented in this file.
 
+## v2.2.2 - 2023-07-11
+
+- feat: after creating and updating redirect to list page
+
 ## v2.2.1 - 2023-07-11
 
 - add TranslatableTabs for title/content/short_content fields
