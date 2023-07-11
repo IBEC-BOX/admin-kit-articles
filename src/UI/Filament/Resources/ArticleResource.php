@@ -5,9 +5,8 @@ namespace AdminKit\Articles\UI\Filament\Resources;
 use AdminKit\Articles\Models\Article;
 use AdminKit\Articles\UI\Filament\Resources\ArticleResource\Pages;
 use AdminKit\Core\Forms\Components\AdminKitCropper;
-use AdminKit\SEO\Forms\Components\SEOSection;
+use AdminKit\SEO\Forms\Components\SEOComponent;
 use Filament\Forms;
-use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -16,10 +15,9 @@ use Illuminate\Support\Str;
 
 class ArticleResource extends Resource
 {
-    use Translatable;
-
     protected static ?string $model = Article::class;
 
+    protected static ?string $recordTitleAttribute = 'title';
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     public static function form(Form $form): Form
@@ -81,7 +79,7 @@ class ArticleResource extends Resource
         ])->columns();
 
         if (config('admin-kit-articles.seo.enabled')) {
-            $rows[] = SEOSection::make();
+            $rows[] = SEOComponent::make();
         }
 
         return $form->schema($rows);
@@ -111,7 +109,8 @@ class ArticleResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ])
+            ->defaultSort('id', 'desc');
     }
 
     public static function getRelations(): array
@@ -138,10 +137,5 @@ class ArticleResource extends Resource
     public static function getPluralLabel(): ?string
     {
         return __('admin-kit-articles::articles.resource.plural_label');
-    }
-
-    public static function getTranslatableLocales(): array
-    {
-        return config('admin-kit.locales');
     }
 }
