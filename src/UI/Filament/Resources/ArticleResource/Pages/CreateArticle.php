@@ -15,4 +15,9 @@ class CreateArticle extends CreateRecord
             //
         ];
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return ArticleResource::getUrl();
+    }
 }
