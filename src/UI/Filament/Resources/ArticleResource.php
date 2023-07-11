@@ -45,32 +45,32 @@ class ArticleResource extends Resource
                 ->zoomable(false);
         }
 
-        $rows[] = Forms\Components\Card::make([
-            TranslatableTabs::make(fn ($locale) => Forms\Components\Tabs\Tab::make($locale)
-                ->schema([
-                    Forms\Components\TextInput::make("title.$locale")
-                        ->label(__('admin-kit-articles::articles.resource.title'))
-                        ->required($locale === app()->getLocale())
-                        ->columnSpan(2)
-                        ->lazy()
-                        ->afterStateUpdated(
-                            function (string $context, $state, callable $set) {
-                                if ($context === 'create') {
-                                    $set('slug', Str::slug($state));
-                                }
+        $rows[] = TranslatableTabs::make(fn($locale) => Forms\Components\Tabs\Tab::make($locale)
+            ->schema([
+                Forms\Components\TextInput::make("title.$locale")
+                    ->label(__('admin-kit-articles::articles.resource.title'))
+                    ->required($locale === app()->getLocale())
+                    ->columnSpan(2)
+                    ->lazy()
+                    ->afterStateUpdated(
+                        function (string $context, $state, callable $set) {
+                            if ($context === 'create') {
+                                $set('slug', Str::slug($state));
                             }
-                        ),
+                        }
+                    ),
 
-                    Forms\Components\RichEditor::make("content.$locale")
-                        ->label(__('admin-kit-articles::articles.resource.content'))
-                        ->required($locale === app()->getLocale())
-                        ->columnSpan(2),
+                Forms\Components\RichEditor::make("content.$locale")
+                    ->label(__('admin-kit-articles::articles.resource.content'))
+                    ->required($locale === app()->getLocale())
+                    ->columnSpan(2),
 
-                    Forms\Components\RichEditor::make("short_content.$locale")
-                        ->label(__('admin-kit-articles::articles.resource.short_content'))
-                        ->columnSpan(2),
-                ]))->columnSpan(2),
+                Forms\Components\RichEditor::make("short_content.$locale")
+                    ->label(__('admin-kit-articles::articles.resource.short_content'))
+                    ->columnSpan(2),
+            ]))->columnSpan(2);
 
+        $rows[] = Forms\Components\Card::make([
             Forms\Components\TextInput::make('slug')
                 ->label(__('admin-kit-articles::articles.resource.slug'))
                 ->disabled()
