@@ -112,9 +112,11 @@ class ArticleResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('published_at')
                     ->label(__('admin-kit-articles::articles.resource.published_at'))
+                    ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('admin-kit-articles::articles.resource.created_at'))
+                    ->dateTime()
                     ->sortable(),
             ])
             ->defaultSort('id', 'desc')
