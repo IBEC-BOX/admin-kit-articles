@@ -99,16 +99,25 @@ class ArticleResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')
-                    ->label(__('admin-kit-articles::articles.resource.id')),
+                    ->label(__('admin-kit-articles::articles.resource.id'))
+                    ->sortable(),
                 Tables\Columns\SpatieMediaLibraryImageColumn::make('image')
                     ->label(__('admin-kit-articles::articles.resource.image'))
                     ->height(90)
+                    ->width(160)
                     ->conversion('thumb'),
                 Tables\Columns\TextColumn::make('title')
-                    ->label(__('admin-kit-articles::articles.resource.title')),
+                    ->label(__('admin-kit-articles::articles.resource.title'))
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('published_at')
+                    ->label(__('admin-kit-articles::articles.resource.published_at'))
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label(__('admin-kit-articles::articles.resource.created_at')),
+                    ->label(__('admin-kit-articles::articles.resource.created_at'))
+                    ->sortable(),
             ])
+            ->defaultSort('id', 'desc')
             ->filters([
                 //
             ])
@@ -118,8 +127,7 @@ class ArticleResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ])
-            ->defaultSort('id', 'desc');
+            ]);
     }
 
     public static function getRelations(): array
