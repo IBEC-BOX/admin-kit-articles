@@ -2,6 +2,11 @@
 
 All notable changes to `admin-kit-articles` will be documented in this file.
 
+## v2.2.4 - 2023-07-12
+
+- fix: date columns is dateTime method
+- fix: api set default sort from -published_at
+
 ## v2.2.3 - 2023-07-12
 
 - refactor: change move TranslatableTabs outside Card
