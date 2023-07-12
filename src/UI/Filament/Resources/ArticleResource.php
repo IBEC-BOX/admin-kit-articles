@@ -50,7 +50,6 @@ class ArticleResource extends Resource
                 Forms\Components\TextInput::make("title.$locale")
                     ->label(__('admin-kit-articles::articles.resource.title'))
                     ->required($locale === app()->getLocale())
-                    ->columnSpan(2)
                     ->lazy()
                     ->afterStateUpdated(
                         function (string $context, $state, callable $set) {
@@ -59,6 +58,11 @@ class ArticleResource extends Resource
                             }
                         }
                     ),
+                Forms\Components\TextInput::make('slug')
+                    ->label(__('admin-kit-articles::articles.resource.slug'))
+                    ->disabled()
+                    ->required()
+                    ->unique(Article::class, 'slug', ignoreRecord: true),
 
                 Forms\Components\RichEditor::make("content.$locale")
                     ->label(__('admin-kit-articles::articles.resource.content'))
@@ -68,16 +72,9 @@ class ArticleResource extends Resource
                 Forms\Components\RichEditor::make("short_content.$locale")
                     ->label(__('admin-kit-articles::articles.resource.short_content'))
                     ->columnSpan(2),
-            ]))->columnSpan(2);
+            ]))->columnSpan(2)->columns();
 
         $rows[] = Forms\Components\Card::make([
-            Forms\Components\TextInput::make('slug')
-                ->label(__('admin-kit-articles::articles.resource.slug'))
-                ->disabled()
-                ->required()
-                ->columnSpan(2)
-                ->unique(Article::class, 'slug', ignoreRecord: true),
-
             Forms\Components\DateTimePicker::make('published_at')
                 ->label(__('admin-kit-articles::articles.resource.published_date'))
                 ->columnSpan(2),
