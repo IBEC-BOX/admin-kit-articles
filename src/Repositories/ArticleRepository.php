@@ -31,6 +31,7 @@ class ArticleRepository extends AbstractRepository implements ArticleInterface
                 AllowedFilter::scope('content'),
                 AllowedFilter::scope('short_content'),
             ])
+            ->defaultSort('-published_at')
             ->allowedSorts(['id', 'published_at'])
             ->isPublished()
             ->isTitleNotNull()
