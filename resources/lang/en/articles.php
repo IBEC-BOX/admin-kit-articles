@@ -13,10 +13,11 @@ return [
         'content' => 'Content',
         'short_content' => 'Short Content',
         'published_date' => 'Published Date',
-        'pinned' => 'Pinned',
+        'pinned' => 'Pinned for main page',
         'properties' => 'Properties',
 
         'created_at' => 'Created At',
         'updated_at' => 'Updated At',
+        'published_at' => 'Published At',
     ],
 ];
