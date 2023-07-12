@@ -2,6 +2,14 @@
 
 All notable changes to `admin-kit-articles` will be documented in this file.
 
+## v2.2.3 - 2023-07-12
+
+- refactor: change move TranslatableTabs outside Card
+- chore: change translations
+- feat: add published_at field in table
+- feat: set searchable title
+- feat: set sortable columns
+
 ## v2.2.2 - 2023-07-11
 
 - feat: after creating and updating redirect to list page
