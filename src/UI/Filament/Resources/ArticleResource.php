@@ -33,7 +33,6 @@ class ArticleResource extends Resource
                 ->columnSpan(2)
 
                 // image properties
-                ->imageResizeMode(config('admin-kit-articles.image.resize_mode'))
                 ->imageCropAspectRatio(config('admin-kit-articles.image.crop_aspect_ratio'))
                 ->imageResizeTargetWidth(config('admin-kit-articles.image.resize_target_width'))
                 ->imageResizeTargetHeight(config('admin-kit-articles.image.resize_target_height'))
