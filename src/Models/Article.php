@@ -29,10 +29,10 @@ use Spatie\Translatable\HasTranslations;
 class Article extends AbstractModel implements HasMedia
 {
     use HasFactory, SoftDeletes;
+    use HasSEO;
     use HasTranslations;
     use InteractsWithMedia;
     use Sluggable;
-    use HasSEO;
 
     protected $table = 'admin_kit_articles';
 
@@ -55,7 +55,7 @@ class Article extends AbstractModel implements HasMedia
         'short_content',
     ];
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width(config('admin-kit-articles.image.thumb_width'))

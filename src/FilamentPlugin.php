@@ -2,9 +2,9 @@
 
 namespace AdminKit\Articles;
 
-use Filament\Panel;
-use Filament\Contracts\Plugin;
 use AdminKit\Articles\UI\Filament\Resources\ArticleResource;
+use Filament\Contracts\Plugin;
+use Filament\Panel;
 
 class FilamentPlugin implements Plugin
 {
