@@ -2,10 +2,9 @@
 
 namespace AdminKit\Articles;
 
-use AdminKit\Articles\Commands\ArticlesCommand;
-use AdminKit\Articles\Providers\FilamentServiceProvider;
-use AdminKit\Articles\Providers\RouteServiceProvider;
 use Spatie\LaravelPackageTools\Package;
+use AdminKit\Articles\Commands\ArticlesCommand;
+use AdminKit\Articles\Providers\RouteServiceProvider;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class ArticlesServiceProvider extends PackageServiceProvider
@@ -29,6 +28,5 @@ class ArticlesServiceProvider extends PackageServiceProvider
     public function registeringPackage()
     {
         $this->app->register(RouteServiceProvider::class);
-        $this->app->register(FilamentServiceProvider::class);
     }
 }

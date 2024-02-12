@@ -4,13 +4,10 @@ namespace AdminKit\Articles\UI\Filament\Resources;
 
 use AdminKit\Articles\Models\Article;
 use AdminKit\Articles\UI\Filament\Resources\ArticleResource\Pages;
-use AdminKit\Core\Forms\Components\AdminKitCropper;
 use AdminKit\Core\Forms\Components\TranslatableTabs;
 use AdminKit\SEO\Forms\Components\SEOComponent;
 use Filament\Forms;
-use Filament\Resources\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Support\Str;
 
@@ -20,28 +17,24 @@ class ArticleResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function form(Form $form): Form
+    public static function form(Forms\Form $form): Forms\Form
     {
         $rows = [];
         if (config('admin-kit-articles.image.enabled')) {
-            $rows[] = AdminKitCropper::make('image')
+            $rows[] = Forms\Components\SpatieMediaLibraryFileUpload::make('image')
                 ->label(__('admin-kit-articles::articles.resource.image'))
                 ->image()
                 ->required()
                 ->columnSpan(2)
+                ->imageEditor()
 
                 // image properties
                 ->imageCropAspectRatio(config('admin-kit-articles.image.crop_aspect_ratio'))
                 ->imageResizeTargetWidth(config('admin-kit-articles.image.resize_target_width'))
                 ->imageResizeTargetHeight(config('admin-kit-articles.image.resize_target_height'))
-                ->imagePreviewHeight(config('admin-kit-articles.image.preview_height'))
-
-                // cropper properties
-                ->modalHeading(__('admin-kit-articles::articles.resource.cropper_header'))
-                ->modalSize('2xl')
-                ->zoomable(false);
+                ->imagePreviewHeight(config('admin-kit-articles.image.preview_height'));
         }
 
         $rows[] = TranslatableTabs::make(fn ($locale) => Forms\Components\Tabs\Tab::make($locale)
@@ -90,7 +83,7 @@ class ArticleResource extends Resource
         return $form->schema($rows);
     }
 
-    public static function table(Table $table): Table
+    public static function table(Tables\Table $table): Tables\Table
     {
         return $table
             ->columns([
