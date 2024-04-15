@@ -8,6 +8,7 @@ use AdminKit\SEO\Traits\HasSEO;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
@@ -21,6 +22,7 @@ use Spatie\Translatable\HasTranslations;
  * @property string $title
  * @property string $content
  * @property string $short_content
+ * @property string $image
  * @property bool $pinned
  * @property Carbon|null $published_at
  * @property Carbon $created_at
@@ -95,6 +97,13 @@ class Article extends AbstractModel implements HasMedia
     public function scopeShortContent(Builder $query, $search): Builder
     {
         return $query->where('short_content->'.app()->getLocale(), 'ILIKE', "%$search%");
+    }
+
+    public function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->getFirstMediaUrl(),
+        );
     }
 
     protected static function newFactory(): ArticleFactory
