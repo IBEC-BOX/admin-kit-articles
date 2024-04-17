@@ -30,6 +30,7 @@ class ArticleRepository extends AbstractRepository implements ArticleInterface
                 AllowedFilter::scope('title'),
                 AllowedFilter::scope('content'),
                 AllowedFilter::scope('short_content'),
+                AllowedFilter::scope('pinned'),
             ])
             ->defaultSort('-published_at')
             ->allowedSorts(['id', 'published_at'])

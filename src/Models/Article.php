@@ -99,6 +99,11 @@ class Article extends AbstractModel implements HasMedia
         return $query->where('short_content->'.app()->getLocale(), 'ILIKE', "%$search%");
     }
 
+    public function scopePinned(Builder $query, $search): Builder
+    {
+        return $query->where('pinned', (bool) $search);
+    }
+
     public function image(): Attribute
     {
         return Attribute::make(
