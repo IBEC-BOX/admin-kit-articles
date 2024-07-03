@@ -6,11 +6,14 @@ namespace AdminKit\Articles\UI\API\DTO;
 
 use AdminKit\Articles\Models\Article;
 use Carbon\Carbon;
+use Spatie\LaravelData\Concerns\WithDeprecatedCollectionMethod;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
 
 class ArticleDTO extends Data
 {
+    use WithDeprecatedCollectionMethod;
+
     public function __construct(
         public Lazy|int $id,
         public Lazy|string $slug,
@@ -23,8 +26,7 @@ class ArticleDTO extends Data
         public Lazy|Carbon $created_at,
         public Lazy|Carbon $updated_at,
         public array $seo,
-    ) {
-    }
+    ) {}
 
     public static function fromModel(Article $article): self
     {

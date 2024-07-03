@@ -5,7 +5,7 @@ return [
     'image' => [
         'enabled' => true,
 
-        // see https://filamentphp.com/docs/2.x/forms/fields#file-upload
+        // see https://filamentphp.com/docs/3.x/forms/fields/file-upload#cropping-and-resizing-images-without-the-editor
         'crop_aspect_ratio' => '16:9',
         'resize_target_width' => '1280',
         'resize_target_height' => '720',

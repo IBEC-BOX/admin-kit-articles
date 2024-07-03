@@ -2,7 +2,7 @@
 
 namespace AdminKit\Articles;
 
-use AdminKit\Articles\Commands\ArticlesCommand;
+use AdminKit\Articles\Commands\InstallArticlesCommand;
 use AdminKit\Articles\Providers\RouteServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -22,7 +22,7 @@ class ArticlesServiceProvider extends PackageServiceProvider
             ->hasViews()
             ->hasMigration('create_admin_kit_articles_table')
             ->hasTranslations()
-            ->hasCommand(ArticlesCommand::class);
+            ->hasCommand(InstallArticlesCommand::class);
     }
 
     public function registeringPackage()

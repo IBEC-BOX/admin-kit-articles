@@ -7,8 +7,10 @@ use AdminKit\Articles\UI\Filament\Resources\ArticleResource\Pages;
 use AdminKit\Core\Forms\Components\TranslatableTabs;
 use AdminKit\SEO\Forms\Components\SEOComponent;
 use Filament\Forms;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Support\Str;
 
 class ArticleResource extends Resource
@@ -17,9 +19,9 @@ class ArticleResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    public static function form(Forms\Form $form): Forms\Form
+    public static function form(Form $form): Form
     {
         $rows = [];
         if (config('admin-kit-articles.image.enabled')) {
@@ -28,45 +30,48 @@ class ArticleResource extends Resource
                 ->image()
                 ->required()
                 ->columnSpan(2)
-                ->imageEditor()
 
                 // image properties
                 ->imageCropAspectRatio(config('admin-kit-articles.image.crop_aspect_ratio'))
                 ->imageResizeTargetWidth(config('admin-kit-articles.image.resize_target_width'))
                 ->imageResizeTargetHeight(config('admin-kit-articles.image.resize_target_height'))
-                ->imagePreviewHeight(config('admin-kit-articles.image.preview_height'));
+                ->imagePreviewHeight(config('admin-kit-articles.image.preview_height'))
+
+                // cropper
+                ->imageEditor();
         }
 
-        $rows[] = TranslatableTabs::make(fn ($locale) => Forms\Components\Tabs\Tab::make($locale)
-            ->schema([
-                Forms\Components\TextInput::make("title.$locale")
-                    ->label(__('admin-kit-articles::articles.resource.title'))
-                    ->required($locale === app()->getLocale())
-                    ->lazy()
-                    ->afterStateUpdated(
-                        function (string $context, $state, callable $set) {
-                            if ($context === 'create') {
-                                $set('slug', Str::slug($state));
-                            }
+        $rows[] = TranslatableTabs::make(fn ($locale) => [
+            Forms\Components\TextInput::make("title.$locale")
+                ->label(__('admin-kit-articles::articles.resource.title'))
+                ->required($locale === app()->getLocale())
+                ->lazy()
+                ->afterStateUpdated(
+                    function (string $context, $state, callable $set) {
+                        if ($context === 'create') {
+                            $set('slug', Str::slug($state));
                         }
-                    ),
-                Forms\Components\TextInput::make('slug')
-                    ->label(__('admin-kit-articles::articles.resource.slug'))
-                    ->disabled()
-                    ->required()
-                    ->unique(Article::class, 'slug', ignoreRecord: true),
+                    }
+                ),
+            Forms\Components\TextInput::make('slug')
+                ->label(__('admin-kit-articles::articles.resource.slug'))
+                ->disabled()
+                ->required()
+                ->unique(Article::class, 'slug', ignoreRecord: true),
 
-                Forms\Components\RichEditor::make("content.$locale")
-                    ->label(__('admin-kit-articles::articles.resource.content'))
-                    ->required($locale === app()->getLocale())
-                    ->columnSpan(2),
+            Forms\Components\RichEditor::make("content.$locale")
+                ->label(__('admin-kit-articles::articles.resource.content'))
+                ->required($locale === app()->getLocale())
+                ->columnSpan(2),
 
-                Forms\Components\RichEditor::make("short_content.$locale")
-                    ->label(__('admin-kit-articles::articles.resource.short_content'))
-                    ->columnSpan(2),
-            ]))->columnSpan(2)->columns();
+            Forms\Components\RichEditor::make("short_content.$locale")
+                ->label(__('admin-kit-articles::articles.resource.short_content'))
+                ->columnSpan(2),
+        ])
+            ->columnSpan(2)
+            ->columns();
 
-        $rows[] = Forms\Components\Card::make([
+        $rows[] = Forms\Components\Section::make([
             Forms\Components\DateTimePicker::make('published_at')
                 ->label(__('admin-kit-articles::articles.resource.published_date'))
                 ->columnSpan(2),
@@ -83,7 +88,7 @@ class ArticleResource extends Resource
         return $form->schema($rows);
     }
 
-    public static function table(Tables\Table $table): Tables\Table
+    public static function table(Table $table): Table
     {
         return $table
             ->columns([

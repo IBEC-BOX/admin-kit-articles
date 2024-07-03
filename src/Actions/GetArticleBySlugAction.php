@@ -12,8 +12,7 @@ class GetArticleBySlugAction
 {
     public function __construct(
         private readonly ArticleRepository $articleRepository,
-    ) {
-    }
+    ) {}
 
     public function run(string $slug): Data
     {
