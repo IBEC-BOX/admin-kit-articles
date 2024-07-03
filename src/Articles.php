@@ -2,6 +2,4 @@
 
 namespace AdminKit\Articles;
 
-class Articles
-{
-}
+class Articles {}

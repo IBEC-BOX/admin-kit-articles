@@ -41,7 +41,7 @@ class ArticleResource extends Resource
                 ->imageEditor();
         }
 
-        $rows[] = TranslatableTabs::make(fn($locale) => [
+        $rows[] = TranslatableTabs::make(fn ($locale) => [
             Forms\Components\TextInput::make("title.$locale")
                 ->label(__('admin-kit-articles::articles.resource.title'))
                 ->required($locale === app()->getLocale())

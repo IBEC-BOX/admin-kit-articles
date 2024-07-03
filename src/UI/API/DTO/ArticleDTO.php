@@ -26,8 +26,7 @@ class ArticleDTO extends Data
         public Lazy|Carbon $created_at,
         public Lazy|Carbon $updated_at,
         public array $seo,
-    ) {
-    }
+    ) {}
 
     public static function fromModel(Article $article): self
     {
