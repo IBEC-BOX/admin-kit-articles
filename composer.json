@@ -20,11 +20,12 @@
     "require": {
         "php": "^8.1",
         "cviebrock/eloquent-sluggable": "^10.0",
-        "illuminate/contracts": "^10.0",
+        "filament/filament": "^3.0-stable",
+        "illuminate/contracts": "^10.0|^11.0",
         "ibecsystems/admin-kit-core": "^3.1",
         "ibecsystems/admin-kit-seo": "^3.0",
         "spatie/laravel-package-tools": "^1.14.0",
-        "spatie/laravel-data": "^3.2",
+        "spatie/laravel-data": "^4.5",
         "spatie/laravel-json-api-paginate": "^1.13",
         "spatie/laravel-query-builder": "^5.7"
     },

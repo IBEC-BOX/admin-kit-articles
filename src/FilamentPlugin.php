@@ -15,13 +15,18 @@ class FilamentPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        $panel->resources([
-            ArticleResource::class,
-        ]);
+        $panel
+            ->resources([
+                ArticleResource::class,
+            ])
+            ->pages([
+                //
+            ]);
     }
 
     public function boot(Panel $panel): void
     {
+        //
     }
 
     public static function make(): static
