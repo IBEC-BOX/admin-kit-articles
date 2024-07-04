@@ -7,7 +7,7 @@ use AdminKit\SEO\SEOServiceProvider;
 use Illuminate\Console\Command;
 use Spatie\MediaLibrary\MediaLibraryServiceProvider;
 
-class InstallArticlesCommand extends Command
+class InstallCommand extends Command
 {
     public $signature = 'admin-kit:install-articles';
 
