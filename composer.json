@@ -1,6 +1,6 @@
 {
     "name": "ibecsystems/admin-kit-articles",
-    "description": "Articles for Admin Kit",
+    "description": "Articles package for AdminKit",
     "keywords": [
         "ibecsystems",
         "laravel",
