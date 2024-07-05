@@ -2,6 +2,16 @@
 
 All notable changes to `admin-kit-articles` will be documented in this file.
 
+## v3.2.0 - 2024-07-05
+
+### What's Changed
+
+* fix: naming InstallCommand by @ast21 in https://github.com/IBEC-BOX/admin-kit-articles/pull/9
+* Feat/upgrade composer json file by @ast21 in https://github.com/IBEC-BOX/admin-kit-articles/pull/10
+* feat: support laravel 11 by @ast21 in https://github.com/IBEC-BOX/admin-kit-articles/pull/11
+
+**Full Changelog**: https://github.com/IBEC-BOX/admin-kit-articles/compare/v3.1.0...v3.2.0
+
 ## v3.1.0 - 2024-07-03
 
 ### What's Changed
