@@ -2,18 +2,15 @@
 
 declare(strict_types=1);
 
-namespace AdminKit\Articles\UI\API\DTO;
+namespace AdminKit\Articles\UI\API\Data;
 
 use AdminKit\Articles\Models\Article;
 use Carbon\Carbon;
-use Spatie\LaravelData\Concerns\WithDeprecatedCollectionMethod;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
 
-class ArticleDTO extends Data
+class ArticleData extends Data
 {
-    use WithDeprecatedCollectionMethod;
-
     public function __construct(
         public Lazy|int $id,
         public Lazy|string $slug,
@@ -42,14 +39,14 @@ class ArticleDTO extends Data
             Lazy::when(fn () => isset($article->created_at), fn () => $article->created_at),
             Lazy::when(fn () => isset($article->updated_at), fn () => $article->updated_at),
             [
-                'title' => $article->seo->title,
-                'description' => $article->seo->description,
-                'keywords' => $article->seo->keywords,
+                'title' => $article->seo?->title,
+                'description' => $article->seo?->description,
+                'keywords' => $article->seo?->keywords,
                 'og' => [
-                    'url' => $article->seo->og_url,
-                    'title' => $article->seo->og_title,
-                    'description' => $article->seo->og_description,
-                    'image' => $article->seo->getFirstMediaUrl(),
+                    'url' => $article->seo?->og_url,
+                    'title' => $article->seo?->og_title,
+                    'description' => $article->seo?->og_description,
+                    'image' => $article->seo?->getFirstMediaUrl(),
                 ],
             ]
         );

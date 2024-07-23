@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace AdminKit\Articles\Actions;
 
 use AdminKit\Articles\Repositories\ArticleRepository;
-use AdminKit\Articles\UI\API\DTO\ArticleDTO;
+use AdminKit\Articles\UI\API\Data\ArticleData;
 use Spatie\LaravelData\PaginatedDataCollection;
 
 class GetArticleListAction
@@ -18,6 +18,6 @@ class GetArticleListAction
     {
         $articles = $this->articleRepository->getPaginatedList();
 
-        return ArticleDTO::collection($articles)->except('content');
+        return ArticleData::collect($articles, PaginatedDataCollection::class)->except('content');
     }
 }

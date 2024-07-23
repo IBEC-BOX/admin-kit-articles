@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace AdminKit\Articles\Actions;
 
 use AdminKit\Articles\Repositories\ArticleRepository;
-use AdminKit\Articles\UI\API\DTO\ArticleDTO;
+use AdminKit\Articles\UI\API\Data\ArticleData;
 use Spatie\LaravelData\Data;
 
 class GetArticleBySlugAction
@@ -18,6 +18,6 @@ class GetArticleBySlugAction
     {
         $article = $this->articleRepository->getBySlug($slug);
 
-        return ArticleDTO::from($article);
+        return ArticleData::from($article);
     }
 }
