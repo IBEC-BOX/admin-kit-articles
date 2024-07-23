@@ -2,6 +2,16 @@
 
 All notable changes to `admin-kit-articles` will be documented in this file.
 
+## v3.3.0 - 2024-07-23
+
+### What's Changed
+
+* chore(deps): bump aglipanci/laravel-pint-action from 2.3.1 to 2.4 by @dependabot in https://github.com/IBEC-BOX/admin-kit-articles/pull/13
+* feat: add ArticleFactory.php by @ast21 in https://github.com/IBEC-BOX/admin-kit-articles/pull/14
+* fix: correcting repository pattern by @ast21 in https://github.com/IBEC-BOX/admin-kit-articles/pull/15
+
+**Full Changelog**: https://github.com/IBEC-BOX/admin-kit-articles/compare/v3.2.0...v3.3.0
+
 ## v3.2.0 - 2024-07-05
 
 ### What's Changed
