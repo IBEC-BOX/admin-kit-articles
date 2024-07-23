@@ -13,14 +13,15 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class ArticleRepository extends AbstractRepository implements ArticleInterface
 {
-    public function model(): string
+    public function getModelClass(): string
     {
         return Article::class;
     }
 
     public function getPaginatedList(): LengthAwarePaginator
     {
-        return QueryBuilder::for($this->model())
+        return QueryBuilder::for($this->getModelClass())
+            ->with(['media', 'seo'])
             ->allowedFilters([
                 'id',
                 'slug',
@@ -41,7 +42,7 @@ class ArticleRepository extends AbstractRepository implements ArticleInterface
 
     public function getBySlug(string $slug): Model
     {
-        return $this->model
+        return $this->model()
             ->where('slug', $slug)
             ->isPublished()
             ->firstOrFail();
