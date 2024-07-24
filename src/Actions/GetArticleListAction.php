@@ -18,6 +18,6 @@ class GetArticleListAction
     {
         $articles = $this->articleRepository->getPaginatedList();
 
-        return ArticleData::collect($articles, PaginatedDataCollection::class)->except('content');
+        return ArticleData::collect($articles, PaginatedDataCollection::class);
     }
 }
