@@ -21,7 +21,14 @@ class ArticleRepository extends AbstractRepository implements ArticleInterface
     public function getPaginatedList(): LengthAwarePaginator
     {
         return QueryBuilder::for($this->getModelClass())
-            ->with(['media', 'seo'])
+            ->select([
+                'id',
+                'slug',
+                'title',
+                'short_content',
+                'published_at',
+            ])
+            ->with(['media'])
             ->allowedFilters([
                 'id',
                 'slug',
@@ -43,6 +50,15 @@ class ArticleRepository extends AbstractRepository implements ArticleInterface
     public function getBySlug(string $slug): Model
     {
         return $this->model()
+            ->select([
+                'id',
+                'slug',
+                'title',
+                'content',
+                'short_content',
+                'published_at',
+            ])
+            ->with(['media', 'seo', 'seo.media'])
             ->where('slug', $slug)
             ->isPublished()
             ->firstOrFail();
