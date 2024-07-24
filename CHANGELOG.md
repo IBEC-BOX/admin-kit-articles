@@ -2,6 +2,15 @@
 
 All notable changes to `admin-kit-articles` will be documented in this file.
 
+## v3.3.2 - 2024-07-24
+
+### What's Changed
+
+* refactor: optimize api load by @ast21 in https://github.com/IBEC-BOX/admin-kit-articles/pull/18
+* feat: configurable short content by @ast21 in https://github.com/IBEC-BOX/admin-kit-articles/pull/19
+
+**Full Changelog**: https://github.com/IBEC-BOX/admin-kit-articles/compare/v3.3.1...v3.3.2
+
 ## v3.3.1 - 2024-07-24
 
 ### What's Changed
