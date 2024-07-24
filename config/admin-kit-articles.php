@@ -24,4 +24,9 @@ return [
     'published_at' => [
         'with_time' => true,
     ],
+
+    'short_content' => [
+        'enabled' => true,
+        'is_wysiwyg' => true,
+    ],
 ];
