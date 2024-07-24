@@ -7,6 +7,8 @@ use AdminKit\Articles\UI\Filament\Resources\ArticleResource\Pages;
 use AdminKit\Core\Forms\Components\TranslatableTabs;
 use AdminKit\SEO\Forms\Components\SEOComponent;
 use Filament\Forms;
+use Filament\Forms\Set;
+use Filament\Forms\Get;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -41,23 +43,36 @@ class ArticleResource extends Resource
                 ->imageEditor();
         }
 
+        $rows[] = Forms\Components\Grid::make(1)
+            ->schema([
+                Forms\Components\TextInput::make('slug')
+                    ->label(__('admin-kit-articles::articles.resource.slug'))
+                    ->disabled(fn (Get $get) => ! $get('slug-editable'))
+                    ->required()
+                    ->unique(Article::class, 'slug', ignoreRecord: true)
+                    ->suffixAction(
+                        Forms\Components\Actions\Action::make('slug-edit')
+                            ->icon(fn (Get $get) => $get('slug-editable') ? 'heroicon-o-lock-closed' : 'heroicon-s-pencil-square')
+                            ->action(function (Set $set, Get $get) {
+                                $set('slug-editable', ! $get('slug-editable'));
+                            })),
+                Forms\Components\Checkbox::make('slug-editable')
+                    ->default(false)
+                    ->hidden(),
+            ]);
+
         $rows[] = TranslatableTabs::make(fn ($locale) => [
             Forms\Components\TextInput::make("title.$locale")
                 ->label(__('admin-kit-articles::articles.resource.title'))
                 ->required($locale === app()->getLocale())
                 ->lazy()
                 ->afterStateUpdated(
-                    function (string $context, $state, callable $set) {
-                        if ($context === 'create') {
+                    function (string $context, string $state, Set $set, Get $get) use ($locale) {
+                        if ($context === 'create' && ! $get('slug-editable') && $locale === app()->getLocale()) {
                             $set('slug', Str::slug($state));
                         }
-                    }
-                ),
-            Forms\Components\TextInput::make('slug')
-                ->label(__('admin-kit-articles::articles.resource.slug'))
-                ->disabled()
-                ->required()
-                ->unique(Article::class, 'slug', ignoreRecord: true),
+                    })
+                ->columnSpan(2),
 
             Forms\Components\RichEditor::make("content.$locale")
                 ->label(__('admin-kit-articles::articles.resource.content'))
