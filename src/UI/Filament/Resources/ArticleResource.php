@@ -7,6 +7,8 @@ use AdminKit\Articles\UI\Filament\Resources\ArticleResource\Pages;
 use AdminKit\Core\Forms\Components\TranslatableTabs;
 use AdminKit\SEO\Forms\Components\SEOComponent;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -72,6 +74,8 @@ class ArticleResource extends Resource
             ])
             ->columns();
 
+        $publishedAt = config('admin-kit-articles.published_at.with_time') ? DateTimePicker::class : DatePicker::class;
+
         $components[] = Forms\Components\Section::make([
             Forms\Components\TextInput::make('slug')
                 ->label(__('admin-kit-articles::articles.resource.slug'))
@@ -89,7 +93,7 @@ class ArticleResource extends Resource
                 ->default(false)
                 ->hidden(),
 
-            Forms\Components\DateTimePicker::make('published_at')
+            $publishedAt::make('published_at')
                 ->label(__('admin-kit-articles::articles.resource.published_date'))
                 ->columnSpan(2),
 
