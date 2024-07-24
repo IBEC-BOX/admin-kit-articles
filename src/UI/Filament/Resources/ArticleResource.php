@@ -9,6 +9,8 @@ use AdminKit\SEO\Forms\Components\SEOComponent;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -46,6 +48,18 @@ class ArticleResource extends Resource
                 ->columnSpan(12);
         }
 
+        $shortContent = function ($locale): array {
+            $shortContentClass = config('admin-kit-articles.short_content.is_wysiwyg') ? RichEditor::class : Textarea::class;
+
+            if (config('admin-kit-articles.short_content.enabled')) {
+                return [$shortContentClass::make("short_content.$locale")
+                    ->label(__('admin-kit-articles::articles.resource.short_content'))
+                    ->columnSpan(2)];
+            }
+
+            return [];
+        };
+
         $components[] = TranslatableTabs::make(fn ($locale) => [
             Forms\Components\TextInput::make("title.$locale")
                 ->label(__('admin-kit-articles::articles.resource.title'))
@@ -59,14 +73,12 @@ class ArticleResource extends Resource
                     })
                 ->columnSpan(2),
 
-            Forms\Components\RichEditor::make("content.$locale")
+            RichEditor::make("content.$locale")
                 ->label(__('admin-kit-articles::articles.resource.content'))
                 ->required($locale === app()->getLocale())
                 ->columnSpan(2),
 
-            Forms\Components\RichEditor::make("short_content.$locale")
-                ->label(__('admin-kit-articles::articles.resource.short_content'))
-                ->columnSpan(2),
+            ...$shortContent($locale),
         ])
             ->columnSpan([
                 12,
