@@ -2,6 +2,16 @@
 
 All notable changes to `admin-kit-articles` will be documented in this file.
 
+## v3.3.1 - 2024-07-24
+
+### What's Changed
+
+* fix: slug is editable by @ast21 in https://github.com/IBEC-BOX/admin-kit-articles/pull/16
+* chore(deps): bump dependabot/fetch-metadata from 2.1.0 to 2.2.0 by @dependabot in https://github.com/IBEC-BOX/admin-kit-articles/pull/12
+* Fix/published is date only by @ast21 in https://github.com/IBEC-BOX/admin-kit-articles/pull/17
+
+**Full Changelog**: https://github.com/IBEC-BOX/admin-kit-articles/compare/v3.3.0...v3.3.1
+
 ## v3.3.0 - 2024-07-23
 
 ### What's Changed
