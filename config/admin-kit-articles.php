@@ -20,4 +20,8 @@ return [
     'seo' => [
         'enabled' => true,
     ],
+
+    'published_at' => [
+        'with_time' => true,
+    ],
 ];

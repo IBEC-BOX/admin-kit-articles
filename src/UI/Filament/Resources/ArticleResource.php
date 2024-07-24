@@ -7,6 +7,8 @@ use AdminKit\Articles\UI\Filament\Resources\ArticleResource\Pages;
 use AdminKit\Core\Forms\Components\TranslatableTabs;
 use AdminKit\SEO\Forms\Components\SEOComponent;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -25,9 +27,9 @@ class ArticleResource extends Resource
 
     public static function form(Form $form): Form
     {
-        $rows = [];
+        $components = [];
         if (config('admin-kit-articles.image.enabled')) {
-            $rows[] = Forms\Components\SpatieMediaLibraryFileUpload::make('image')
+            $components[] = Forms\Components\SpatieMediaLibraryFileUpload::make('image')
                 ->label(__('admin-kit-articles::articles.resource.image'))
                 ->image()
                 ->required()
@@ -40,28 +42,11 @@ class ArticleResource extends Resource
                 ->imagePreviewHeight(config('admin-kit-articles.image.preview_height'))
 
                 // cropper
-                ->imageEditor();
+                ->imageEditor()
+                ->columnSpan(12);
         }
 
-        $rows[] = Forms\Components\Grid::make(1)
-            ->schema([
-                Forms\Components\TextInput::make('slug')
-                    ->label(__('admin-kit-articles::articles.resource.slug'))
-                    ->disabled(fn (Get $get) => ! $get('slug-editable'))
-                    ->required()
-                    ->unique(Article::class, 'slug', ignoreRecord: true)
-                    ->suffixAction(
-                        Forms\Components\Actions\Action::make('slug-edit')
-                            ->icon(fn (Get $get) => $get('slug-editable') ? 'heroicon-o-lock-closed' : 'heroicon-s-pencil-square')
-                            ->action(function (Set $set, Get $get) {
-                                $set('slug-editable', ! $get('slug-editable'));
-                            })),
-                Forms\Components\Checkbox::make('slug-editable')
-                    ->default(false)
-                    ->hidden(),
-            ]);
-
-        $rows[] = TranslatableTabs::make(fn ($locale) => [
+        $components[] = TranslatableTabs::make(fn ($locale) => [
             Forms\Components\TextInput::make("title.$locale")
                 ->label(__('admin-kit-articles::articles.resource.title'))
                 ->required($locale === app()->getLocale())
@@ -83,24 +68,49 @@ class ArticleResource extends Resource
                 ->label(__('admin-kit-articles::articles.resource.short_content'))
                 ->columnSpan(2),
         ])
-            ->columnSpan(2)
+            ->columnSpan([
+                12,
+                'lg' => 8,
+            ])
             ->columns();
 
-        $rows[] = Forms\Components\Section::make([
-            Forms\Components\DateTimePicker::make('published_at')
+        $publishedAt = config('admin-kit-articles.published_at.with_time') ? DateTimePicker::class : DatePicker::class;
+
+        $components[] = Forms\Components\Section::make([
+            Forms\Components\TextInput::make('slug')
+                ->label(__('admin-kit-articles::articles.resource.slug'))
+                ->disabled(fn (Get $get) => ! $get('slug-editable'))
+                ->required()
+                ->unique(Article::class, 'slug', ignoreRecord: true)
+                ->suffixAction(
+                    Forms\Components\Actions\Action::make('slug-edit')
+                        ->icon(fn (Get $get) => $get('slug-editable') ? 'heroicon-o-lock-closed' : 'heroicon-s-pencil-square')
+                        ->action(function (Set $set, Get $get) {
+                            $set('slug-editable', ! $get('slug-editable'));
+                        }))
+                ->columnSpan(2),
+            Forms\Components\Checkbox::make('slug-editable')
+                ->default(false)
+                ->hidden(),
+
+            $publishedAt::make('published_at')
                 ->label(__('admin-kit-articles::articles.resource.published_date'))
                 ->columnSpan(2),
 
             Forms\Components\Toggle::make('pinned')
                 ->label(__('admin-kit-articles::articles.resource.pinned'))
                 ->columnSpan(2),
-        ]);
+        ])
+            ->columnSpan([
+                12,
+                'lg' => 4,
+            ])->columns();
 
         if (config('admin-kit-articles.seo.enabled')) {
-            $rows[] = SEOComponent::make();
+            $components[] = SEOComponent::make();
         }
 
-        return $form->schema($rows);
+        return $form->schema($components)->columns(12);
     }
 
     public static function table(Table $table): Table
