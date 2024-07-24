@@ -113,6 +113,6 @@ class Article extends AbstractModel implements HasMedia
 
     protected static function newFactory(): ArticleFactory
     {
-        return new ArticleFactory();
+        return new ArticleFactory;
     }
 }
