@@ -2,6 +2,14 @@
 
 All notable changes to `admin-kit-articles` will be documented in this file.
 
+## v3.3.4 - 2024-09-03
+
+### What's Changed
+
+* feat: add configurable filament navigation group by @ast21 in https://github.com/IBEC-BOX/admin-kit-articles/pull/21
+
+**Full Changelog**: https://github.com/IBEC-BOX/admin-kit-articles/compare/v3.3.3...v3.3.4
+
 ## v3.3.3 - 2024-07-31
 
 ### What's Changed
