@@ -29,4 +29,6 @@ return [
         'enabled' => true,
         'is_wysiwyg' => true,
     ],
+
+    'navigation_group_enabled' => false,
 ];
