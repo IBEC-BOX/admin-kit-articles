@@ -27,6 +27,15 @@ class ArticleResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
+    public static function getNavigationGroup(): ?string
+    {
+        if (! config('admin-kit-articles.navigation_group_enabled')) {
+            return null;
+        }
+
+        return __('admin-kit-articles::articles.resource.navigation_group');
+    }
+
     public static function form(Form $form): Form
     {
         $components = [];

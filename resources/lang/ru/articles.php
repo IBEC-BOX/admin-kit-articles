@@ -8,6 +8,7 @@ return [
         'id' => 'ID',
         'image' => 'Изображение',
         'title' => 'Заголовок',
+        'navigation_group' => 'Новости',
         'slug' => 'Slug',
         'content' => 'Контент',
         'short_content' => 'Короткий контент',
