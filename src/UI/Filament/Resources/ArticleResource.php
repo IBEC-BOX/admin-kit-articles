@@ -26,6 +26,7 @@ class ArticleResource extends Resource
             $rows[] = Forms\Components\SpatieMediaLibraryFileUpload::make('image')
                 ->label(__('admin-kit-articles::articles.resource.image'))
                 ->image()
+                ->optimize('webp')
                 ->required()
                 ->columnSpan(2)
                 ->imageEditor()
