@@ -2,6 +2,10 @@
 
 All notable changes to `admin-kit-articles` will be documented in this file.
 
+## v3.3.4-optimizer - 2024-11-11
+
+**Full Changelog**: https://github.com/IBEC-BOX/admin-kit-articles/compare/v3.3.4...v3.3.4-optimizer
+
 ## v3.3.4 - 2024-09-03
 
 ### What's Changed
