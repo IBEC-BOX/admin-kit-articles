@@ -28,7 +28,7 @@
         "joshembling/image-optimizer": "^1.4",
         "spatie/laravel-package-tools": "^1.14.0",
         "spatie/laravel-data": "^4.5",
-        "spatie/laravel-json-api-paginate": "^1.13",
+        "spatie/laravel-json-api-paginate": "v1.14",
         "spatie/laravel-query-builder": "^5.7"
     },
     "require-dev": {
